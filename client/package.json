@@ -2,11 +2,8 @@
   "name": "client",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start": "ng serve -o",
+    "prod": "ng build --prod --aot"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,10 @@
+/node_modules
+/src/config.ts
+/public/wwww
+/dist
+/log
+/backup
+/private
+/data/comics.data
+/temp
+!.gitkeep
