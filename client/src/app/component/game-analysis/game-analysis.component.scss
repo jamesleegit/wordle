@@ -74,3 +74,13 @@
         background-color: yellow;
     }
 }
+
+
+
+
+@import '../../../responsive.scss';
+@include responsive(not-desktop) {
+    .popup {
+        padding: 10px!important;
+    }
+}

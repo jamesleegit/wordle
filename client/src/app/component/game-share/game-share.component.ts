@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { encodeToken } from 'src/app/lib/util.lib';
 import { ApiService } from 'src/app/service/api.service';
 
 @Component({
@@ -28,8 +29,8 @@ export class GameShareComponent implements OnInit {
     this.isSubmitting = true;
     try {
       await this._api.getWordInformation({word: word});
-      const token = btoa(encodeURIComponent(`${word}:${new Date().getTime()}`));
-      this.shareLink = `${location.href}?s=${token}`;
+      const token = encodeToken(`${word}:1`);
+      this.shareLink = `${location.origin}?s=${token}`;
     } catch(e) { 
       (<any>window).nativeAlert('올바른 단어가 아닌 것 같습니다.\n다른 단어로 입력해주시겠습니까?');
       console.log(e);

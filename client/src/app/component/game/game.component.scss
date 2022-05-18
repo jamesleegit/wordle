@@ -87,6 +87,7 @@
             height: 100%;
             margin-right: 5px;
             background-color: #d3d6da;
+            padding: 0;
             &.highlight{
                 animation: highlight-enter 1s linear infinite;
             }
@@ -149,5 +150,25 @@
 @keyframes blink1 {
     50% {
         opacity: 0.2;
+    }
+}
+
+/////////////////
+
+@import '../../../responsive.scss';
+@include responsive(not-desktop) {
+
+    .game {
+        .timer {
+            margin-bottom: 20px;
+            .text {
+                font-size: 30px;
+            }
+        }
+        .wrapper{
+            .line {
+                max-width: 250px;
+            }
+        }
     }
 }

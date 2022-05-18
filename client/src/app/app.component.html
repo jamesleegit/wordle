@@ -8,9 +8,10 @@
                 <button class="btn btn-submit" mat-ripple (click)="start1();">새 게임시작</button>
                 <ng-container *ngIf="tempToken">
                     <div style="height: 8px;"></div>
-                    <button class="btn btn-submit-outline" mat-ripple (click)="start0();">
+                    <button class="btn btn-submit-outline" mat-ripple (click)="start0();" style="font-weight: bold;">
                         <div>이어서 시작</div>
-                        <div style="font-size: 14px; margin-top: 5px;">{{tempTokenTime | date : 'MM/dd HH:mm에 생성' }}</div>
+                        <div style="font-size: 14px; margin-top: 5px;" *ngIf="tempTokens[1] !== '1'">{{tempTokens[1] | date : 'MM/dd HH:mm에 생성' }}</div>
+                        <div style="font-size: 14px; margin-top: 5px;" *ngIf="tempTokens[1] === '1'">초대받은 게임!</div>
                     </button>
                 </ng-container>
                 <div style="height: 20px;"></div>

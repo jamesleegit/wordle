@@ -135,22 +135,14 @@ export class GameComponent implements OnDestroy, AfterContentInit {
     }
     this.isRequestingGame = true;
     try {
-      const res = await this._api.getWordInformation({word: this.nowMatrixLine.join('')});
+      const word = this.nowMatrixLine.join('');
+      const res = await this._api.getWordInformation({word });
       this.nowMatrixIndex += 1;
       this.updateFounds();
       this.saveMatrix();
       
       // 결과정산
-      let isSuccess = false;
-      let count = 0;
-      for (let key in this.founds) {
-        if (this.founds[key] === 'green') {
-          count += 1;
-        }
-      }
-      if (count === 5) {
-        isSuccess = true;
-      }
+      let isSuccess = this.answer === word;
       const result = { token: this.token, isSuccess, startTime: this.startTime, playTime: new Date().getTime() - new Date(Number(this.startTime)).getTime(), answer: this.answer };
       this.resultPlayTime = result.playTime;
       if (this.nowMatrixIndex === 5 || isSuccess) {

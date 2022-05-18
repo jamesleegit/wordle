@@ -44,7 +44,9 @@ button {
 .container {
     width: 100%; max-width: 500px; margin: 0 auto; background-color: #fff;
 }
-
+.cdk-overlay-pane{
+    max-width: initial!important;
+}
 .mat-dialog-container {
     width: auto!important;
     max-width: initial!important;

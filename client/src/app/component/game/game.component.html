@@ -30,13 +30,13 @@
             </div>
         </main>
         <div class="keyboard-wrap">
-            <div class="line">
+            <div class="line" data-index="1">
                 <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine1;" [attr.data-filled]="founds[item]">{{item}}</button>
             </div>
-            <div class="line">
+            <div class="line" data-index="2">
                 <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine2;" [attr.data-filled]="founds[item]">{{item}}</button>
             </div>
-            <div class="line">
+            <div class="line" data-index="3">
                 <button (click)="pressEnter();" mat-ripple class="btn" [class.highlight]="nowMatrixLineLength === 5" style="max-width: initial;">엔터</button>
                 <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine3;" [attr.data-filled]="founds[item]">{{item}}</button>
                 <button (click)="pressBackspace();" mat-ripple class="btn" style="max-width: initial;">

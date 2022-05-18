@@ -1,4 +1,4 @@
-<div style="width: 450px; max-height: 80vh; overflow: auto; padding: 20px; background-color: #fff;">
+<div style="width: 100%; max-width: 450px; max-height: 80vh; overflow: auto; padding: 20px; background-color: #fff;" class="popup">
     <ng-container  *ngIf="result">
         <div style="display:flex; align-items: center; margin-bottom: 10px;">
             <div style="flex: 1;">
@@ -47,7 +47,7 @@
                 <div class="a4">결과</div>
                 <div class="a3">정답</div>
             </div>
-            <div *ngFor="let item of historyForDisplay" class="line" [class.win]="item.isSuccess" [class.faild]="!item.isSuccess" [class.highlight]="result && result.token === item.token">
+            <div *ngFor="let item of historyForDisplay" class="line" [class.win]="item.isSuccess" [class.faild]="!item.isSuccess" [class.highlight]="result && result.token === item.token && result.startTime === item.startTime">
                 <div class="a1">{{(item.startTime) | date : 'MM/dd HH:mm'}}</div>
                 <div class="a2">{{calcTime(item.playTime)}}</div>
                 <div class="a4" style="font-weight:bold;">{{item.isSuccess ? '정답' : '오답'}}</div>
