@@ -1,0 +1,58 @@
+<div class="container">
+    <div style="display: flex; height: 100vh; flex-direction: column; position: relative;" #layoutDom>
+        <header class="header">
+            <button mat-ripple class="btn-nav" (click)="moveHome();">
+                <i class="material-icons">home</i>
+            </button>
+            <div class="logo">wordLe</div>
+            <button class="btn-nav"></button>
+        </header>
+        <main class="game">
+            <div class="wrapper">
+                <div class="timer">
+                    <div class="text" *ngIf="!resultPlayTime && startTime">{{calcTime(nowTime - startTime)}}</div>
+                    <div class="text" *ngIf="resultPlayTime">{{calcTime(resultPlayTime)}}</div>
+                    <div class="text" *ngIf="!resultPlayTime && !startTime" style="font-size: 24px; animation: blink1 1s infinite ease-out;">자판을 누르면 시작합니다!</div>
+                </div>
+                <div class="line" *ngFor="let item of matrix; let i = index;" [class.shake]="errorAnimationIndex === i">
+                    <div class="box" *ngFor="let _item of item; let _i = index;">
+                        <div class="content"></div>
+                        <div *ngIf="_item" class="content stroked" style="z-index: 9;">{{_item}}</div>
+                        <ng-container *ngIf="i < nowMatrixIndex">
+                            <div class="content" style="box-shadow: none; background: #fff; z-index: 10;"></div>
+                            <div class="content filled flip-gray"
+                            [class.flip-green]="_answer[_i] === _item"
+                            [class.flip-yellow]="_answer[_i] !== _item && _answer.includes(_item)"
+                            style="z-index: 11;" [style.animation-delay.ms]="_i * 250">{{_item}}</div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="keyboard-wrap">
+            <div class="line">
+                <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine1;" [attr.data-filled]="founds[item]">{{item}}</button>
+            </div>
+            <div class="line">
+                <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine2;" [attr.data-filled]="founds[item]">{{item}}</button>
+            </div>
+            <div class="line">
+                <button (click)="pressEnter();" mat-ripple class="btn" [class.highlight]="nowMatrixLineLength === 5" style="max-width: initial;">엔터</button>
+                <button (click)="pressChar(item);" mat-ripple class="btn" *ngFor="let item of keyboardLine3;" [attr.data-filled]="founds[item]">{{item}}</button>
+                <button (click)="pressBackspace();" mat-ripple class="btn" style="max-width: initial;">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path fill="var(--color-tone-1)" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="result" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 99; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.1);">
+            <button (click)="moveHome(false);" mat-ripple style="font-size: 20px; font-weight: bold; background: #fff; color :#000; width: 180px; box-shadow: 0 3px 5px rgba(0,0,0,.25); height: 80px; border-radius: 5px;">
+                <i class="material-icons">home</i>
+                <span>&nbsp;메인으로</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isRequestingGame" class="loading">단어검색 중 입니다 ...</div>

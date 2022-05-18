@@ -1,0 +1,17 @@
+<div style="width: 350px; max-height: 80vh; overflow: auto; padding: 20px; background-color: #fff;">
+    <div style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">직접 문제를 만들어보세요!</div>
+    <div style="font-size: 18px; font-weight: bold;">정답 (5글자의 영어단어)</div>
+    <div style="display: flex;">
+        <input (keyup.enter)="submit();" style="flex: 1;height: 50px;  font-size: 24px; font-weight: bold; text-align: center; margin-top: 10px; background-color: #eee;" [(ngModel)]="word">
+        <button (click)="submit();" mat-ripple style="width: 100px; height: 50px; background: rgb(36, 91, 232); color: #fff; margin-top: 10px; font-size: 18px; font-weight: bold;">URL생성</button>
+    </div>
+
+    <div *ngIf="shareLink">
+        <div style="margin-top: 20px; font-weight: bold; font-size: 18px;">이제 친구들에게 게임을 공유하세요!</div>
+        <div style="display: flex;">
+            <input (click)="i.select();" #i style="flex: 1;height: 50px; font-size: 15px; font-weight: bold; text-align: center; margin-top: 10px; background-color: #fff; padding: 0 10px; border: 1px solid #ccc;" [(ngModel)]="shareLink">
+            <button (click)="copy();" mat-ripple style="width: 100px; height: 50px; background: rgb(229, 229, 229); color: #000; border: 1px solid #ccc; border-left: 0; margin-top: 10px; font-size: 18px; font-weight: bold;">복사</button>
+        </div>
+    </div>
+    
+</div>

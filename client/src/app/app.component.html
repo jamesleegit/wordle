@@ -1,0 +1,26 @@
+<div class="container" *ngIf="!token">
+    <div style="display: flex; height: 100vh; flex-direction: column;">
+        <header class="header">
+            <div class="logo">wordLe</div>
+        </header>
+        <main style="flex: 1; height: 100%; position: relative; overflow: hidden;">
+            <div class="btn-wrap">
+                <button class="btn btn-submit" mat-ripple (click)="start1();">새 게임시작</button>
+                <ng-container *ngIf="tempToken">
+                    <div style="height: 8px;"></div>
+                    <button class="btn btn-submit-outline" mat-ripple (click)="start0();">
+                        <div>이어서 시작</div>
+                        <div style="font-size: 14px; margin-top: 5px;">{{tempTokenTime | date : 'MM/dd HH:mm에 생성' }}</div>
+                    </button>
+                </ng-container>
+                <div style="height: 20px;"></div>
+                <button class="btn btn-analysis" mat-ripple (click)="openShare();">게임만들기</button>
+                <div style="height: 20px;"></div>
+                <button class="btn btn-analysis" mat-ripple (click)="openAnalysis();">내 전적</button>
+            </div>
+            <div class="background"></div>
+        </main>
+    </div>
+</div>
+
+<app-game [token]="token" *ngIf="token" (onMoveHome)="onMoveHome();" (onComplete)="onComplete($event);" ></app-game>

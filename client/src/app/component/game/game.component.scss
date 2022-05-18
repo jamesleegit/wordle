@@ -1,0 +1,153 @@
+.header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .btn-nav{
+        width: 50px;
+        height: 50px;
+    }
+    >.logo {
+        font-family: 궁서체;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.01em;
+        flex: 1;
+        text-align: center;
+    }
+}
+.game {
+    width: 100%;
+    flex: 1;
+    height: 100%;
+    overflow: auto;
+    .wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .line {
+        width: 100%;
+        .box {
+            position: relative;
+            display: inline-block;
+            width: 20%;
+            padding-top: 20%;
+            .content {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                width: 90%;
+                height: 90%;
+                letter-spacing: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 26px;
+                font-weight: bold;
+                box-shadow: 0 0 0 2px #bbb inset;
+                user-select: none;
+                &.stroked {
+                    background-color: #fff;
+                    box-shadow: 0 0 0 2px #555 inset;
+                    animation: show1 .1s ease-out;
+                }
+                &.filled {
+                    box-shadow: 0 0 0 2px rgba(0,0,0,.5) inset;
+                    &.flip-gray { animation: flip .5s ease-out, flip-gray .5s ease-out; animation-fill-mode: forwards; }
+                    &.flip-green { animation: flip .5s ease-out, flip-green .5s ease-out; animation-fill-mode: forwards; }
+                    &.flip-yellow { animation: flip .5s ease-out, flip-yellow .5s ease-out; animation-fill-mode: forwards; }
+                }
+            }
+        }
+        &.shake {
+            animation: shake .25s 3 ease-out;
+        }
+    }
+}
+.keyboard-wrap {
+    padding: 5px;
+    .line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        padding: 5px 0 5px 5px;
+        .btn {
+            flex: 1;
+            max-width: 45px;
+            height: 100%;
+            margin-right: 5px;
+            background-color: #d3d6da;
+            &.highlight{
+                animation: highlight-enter 1s linear infinite;
+            }
+            &[data-filled="green"] {
+                background-color: #6aaa64;
+                color: #fff; 
+            }
+            &[data-filled="yellow"] {
+                background-color: #c9b458;
+                color: #fff; 
+            }
+        }
+    }
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 10px; 
+    animation: fadein .2s;
+    z-index: 9;
+}
+
+.timer {
+    display: flex; height: 40px; align-items: center; justify-content: center;
+    margin-bottom: 50px;
+    .text { font-size: 34px; font-weight: bold; text-align: center; }
+}
+
+@keyframes show1 {
+    0%{ opacity: 0; }
+    50%{transform: scale(1.1);}
+}
+@keyframes highlight-enter {
+    50%{ background-color: rgb(255, 249, 129); }
+}
+@keyframes shake {
+    33%{ transform: translateX(-5px); }
+    66%{ transform: translateX(5px); }
+}
+@keyframes flip {
+    0%{transform: rotateX(0);}
+    50%{transform: rotateX(-90deg);}
+    100%{ transform: rotateX(0);  }
+}
+@keyframes flip-gray {  50%{ background-color: transparent;} 100%{  background-color: #787c7e; color: #fff; } }
+@keyframes flip-green {  50%{ background-color: transparent;} 100%{  background-color: #6aaa64; color: #fff; } }
+@keyframes flip-yellow {  50%{ background-color: transparent;} 100%{  background-color: #c9b458; color: #fff; } }
+@keyframes fadein {
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
+}
+@keyframes blink1 {
+    50% {
+        opacity: 0.2;
+    }
+}

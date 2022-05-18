@@ -1,0 +1,64 @@
+.header {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    >.logo {
+        font-family: 궁서체;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: 0.01em;
+    }
+}
+
+
+.btn-wrap {
+    position: relative;
+    z-index: 9;
+    padding-bottom: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center; justify-content: center; flex-direction: column;
+}
+
+.btn {
+    height: 55px;
+    width: 250px;
+    font-size: 20px;
+}
+
+.btn-submit {
+    background-color: #2762c1;
+    color: #fff;
+}
+
+.btn-submit-outline {
+    height: 65px;
+    background-color: #fff;
+    border: 1px solid #2762c1;
+    color: #2762c1;
+}
+
+.btn-etc {
+    background-color: #fff;
+    border: 1px solid orangered;
+    color: orangered;
+}
+.btn-analysis {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.background {
+    animation: background-move 300s infinite linear;
+    position: absolute; top: 0; left:0; width: 100%;height:100%;
+    background-image: url(/assets/background.svg); filter: blur(1px); opacity: .15;
+}
+
+@keyframes background-move {
+    100%{
+        background-position-x: -3000%;
+        background-position-y: 3000%;
+    }
+}

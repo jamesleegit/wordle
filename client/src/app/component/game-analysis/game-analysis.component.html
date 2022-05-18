@@ -1,0 +1,62 @@
+<div style="width: 450px; max-height: 80vh; overflow: auto; padding: 20px; background-color: #fff;">
+    <ng-container  *ngIf="result">
+        <div style="display:flex; align-items: center; margin-bottom: 10px;">
+            <div style="flex: 1;">
+                <div *ngIf="result.isSuccess" style="font-size: 24px;font-weight: bold; color: rgb(8, 142, 8); text-align: center;">정답입니다!</div>
+                <div *ngIf="!result.isSuccess" style="font-size: 24px;font-weight: bold; color: rgb(189, 18, 18); text-align: center;">GAME OVER ...</div>
+            </div>
+            <div style="width: 100px; height: 50px; background: #eee; padding: 5px; text-align: center;">
+                <div>플레이시간</div>
+                <div>{{calcTime(result.playTime)}}</div>
+            </div>
+            <div style="width: 5px;"></div>
+            <div style="width: 80px; height: 50px; background: #eee; padding: 5px; text-align: center;">
+                <div>정답</div>
+                <span style="font-weight: bold; color: rgb(8,142,8);">{{result.answer}}</span>
+            </div>
+        </div>
+    </ng-container>
+    <div style="font-size: 18px; font-weight: bold;">내 전적</div>
+    <div style="display: flex; padding: 10px 0;">
+        <div class="card">
+            <div class="title">플레이횟수</div>
+            <div class="content">{{playCount}}회</div>
+        </div>
+        <div style="width: 10px;"></div>
+        <div class="card">
+            <div class="title">승리횟수</div>
+            <div class="content">{{winCount}}회</div>
+        </div>
+        <div style="width: 10px;"></div>
+        <div class="card">
+            <div class="title">승률(%)</div>
+            <div class="content">{{!playCount ? 0 : (winCount / playCount ) * 100 | number : '.2-2'}}%</div>
+        </div>
+    </div>
+    <div style="display: flex; align-items: center; margin-top: 10px;">
+        <div style="font-size: 18px; font-weight: bold;">게임기록</div>
+        <div style="flex: 1;"></div>
+        <button (click)="removeAll();" style="background-color: #eee; color: #000; border: 1px solid #ddd; padding: 5px;" mat-ripple *ngIf="history && history.length > 0">게임기록 삭제</button>
+    </div>
+    <div>
+        <div *ngIf="history.length === 0" style="font-size: 16px; font-weight: bold; text-align: center; margin: 20px 0;">플레이기록이 없습니다.</div>
+        <ng-container *ngIf="history.length > 0">
+            <div class="line" style="background-color: #333; color: #fff; margin-top: 10px;">
+                <div class="a1">시작시각</div>
+                <div class="a2">플레이타임</div>
+                <div class="a4">결과</div>
+                <div class="a3">정답</div>
+            </div>
+            <div *ngFor="let item of historyForDisplay" class="line" [class.win]="item.isSuccess" [class.faild]="!item.isSuccess" [class.highlight]="result && result.token === item.token">
+                <div class="a1">{{(item.startTime) | date : 'MM/dd HH:mm'}}</div>
+                <div class="a2">{{calcTime(item.playTime)}}</div>
+                <div class="a4" style="font-weight:bold;">{{item.isSuccess ? '정답' : '오답'}}</div>
+                <div class="a3">
+                    <div class="box" *ngFor="let _item of item.$answer">{{_item}}</div>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+            <app-page-nation [allCount]="history.length" [start]="start" [limit]="limit" (change)="start=$event; updateHistoryForDisplay();"></app-page-nation>
+        </ng-container>
+    </div>
+</div>

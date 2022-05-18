@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="kr">
+<head>
+  <meta charset="utf-8">
+  <title>Wordle - 강전일</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-root></app-root>
+
+
+  <style>
+    .pub-layer-popup {
+        position: fixed;
+        z-index: 9999999;
+        display: inline-table;
+        width: auto;
+        min-width: 200px;
+        max-width: calc(100% - 40px);
+        padding: 23px 23px 22px;
+        text-align: center;
+        background: rgba(0, 0, 0, .9);
+        box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+        color: #fff;
+        font-weight: 500;
+        line-height: 1.5;
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        animation: show-layer-popup .6s ease-out;
+        transition: all .6s ease-out;
+        pointer-events: none;
+        font-size: 17px;
+        white-space: pre-wrap;
+    }
+    
+    .pub-layer-popup.off {
+        opacity: 0;
+    }
+    
+    @keyframes show-layer-popup {
+        0% {
+            opacity: 0;
+            margin-top: 20px;
+            /* translateY(10px); */
+        }
+    }
+    
+    @media (max-width: 500px) {
+        .pub-layer-popup {
+            padding: 23px 0 22px;
+            width: 90vw;
+            font-size: 17px;
+        }
+    }
+  </style>
+  <script>
+      // Made by 강전일
+      window.nativeAlert = window.alert;
+      window.alert = function(str) {
+          var ele = document.createElement('div');
+          ele.innerHTML = str;
+          ele.setAttribute('class', 'pub-layer-popup');
+          document.body.appendChild(ele);
+          setTimeout(function() {
+              ele.setAttribute('class', 'pub-layer-popup off');
+              setTimeout(function() {
+                  ele.remove();
+              }, 1000);
+          }, 1500);
+      }
+  </script>
+  
+
+  <script>
+    function copyToClipboard(val) {
+        const t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+    }
+  </script>
+
+</body>
+</html>

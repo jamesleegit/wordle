@@ -1,0 +1,76 @@
+.card {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    > .content {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 0;
+    }
+}
+
+.line {
+    display: flex; align-items: center;
+    height: 28px;
+    > .a1{ 
+        width: 90px;
+        text-align: center;
+    }
+    > .a2{ 
+        width: 90px;
+        text-align: center;
+    }
+    > .a3{ 
+        flex: 1;
+        padding-left: 10px;
+    }
+    > .a4{ 
+        width: 40px;
+        text-align: center;
+    }
+    &:nth-child(2n-1) {
+        background-color: #eee;
+    }
+
+    .box {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        line-height: 18px;
+        box-shadow: 0 0 0 1px #ddd;
+        text-align: center;
+        letter-spacing: 0;
+        background-color: #fff;
+        color: green;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    &.faild {
+        >.a4{
+            color: red;
+        }
+        .box {
+            color: red;
+            box-shadow: 0 0 0 1px red;
+        }
+    }
+    &.win {
+        >.a4{
+            color: green;
+        }
+        .box {
+            color: green;
+            box-shadow: 0 0 0 1px green;
+        }
+    }
+    &.highlight{
+        animation: blink 1s infinite ease-out;
+    }
+}
+
+@keyframes blink {
+    50% {
+        background-color: yellow;
+    }
+}

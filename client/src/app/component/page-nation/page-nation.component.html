@@ -1,0 +1,12 @@
+<div class="page-nation">
+    <button class="prev" *ngIf="pageNationArray[0] > 0" (click)="start = max(start - limit * 10, 0); change.emit(start);"><
+    </button>
+    <button *ngFor="let i of pageNationArray"
+         [class.active]="i === pageNationNow"
+         (click)="start = i * limit; change.emit(start);">
+         <span>{{i + 1}}</span>
+    </button>
+    <button class="next" *ngIf="pageNationArray[pageNationArray.length - 1] < pageNationLast"
+         (click)="start = min(start + limit * 10, pageNationLast * limit); change.emit(start);">>
+    </button>
+</div>
